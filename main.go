@@ -15,9 +15,9 @@ import (
 )
 
 func main() {
-	addr := flag.String("addr", ":4000", "HTTP network address")
-	sqsEndpointUrl := flag.String("sqsendpoint", "http://127.0.0.1:9324", "SQS endpoint")
-	queueName := flag.String("qname", "test", "SQS queue name")
+	addr := flag.String("p", ":4000", "HTTP network address")
+	sqsEndpointUrl := flag.String("sqs", "http://127.0.0.1:9324", "SQS endpoint")
+	queueName := flag.String("q", "test", "SQS queue name")
 	createQueue := flag.Bool("createq", false, "Create SQS queue if it does not exist")
 	flag.Parse()
 
