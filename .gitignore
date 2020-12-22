@@ -1,0 +1,8 @@
+
+# Project Files
+*.iml
+.idea/
+
+# Go Build
+miniosqs
+

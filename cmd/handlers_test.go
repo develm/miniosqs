@@ -1,47 +1,47 @@
-package main
+package cmd
 
 import (
-    "net/http"
-    "testing"
+	"net/http"
+	"testing"
 )
 
 func Test405(t *testing.T) {
-    app := newTestApplication(t)
-    ts := newTestServer(t, app.routes())
-    defer ts.Close()
+	app := newTestApplication(t)
+	ts := newTestServer(t, app.Routes())
+	defer ts.Close()
 
-    code, _, _ := ts.get(t, "/")
+	code, _, _ := ts.get(t, "/")
 
-    if code != 405 {
-        t.Errorf("want %d; got %d", http.StatusOK, code)
-    }
+	if code != 405 {
+		t.Errorf("want %d; got %d", http.StatusOK, code)
+	}
 }
 
 func Test404(t *testing.T) {
-    app := newTestApplication(t)
-    ts := newTestServer(t, app.routes())
-    defer ts.Close()
+	app := newTestApplication(t)
+	ts := newTestServer(t, app.Routes())
+	defer ts.Close()
 
-    code, _, _ := ts.get(t, "/doesnotexist")
+	code, _, _ := ts.get(t, "/doesnotexist")
 
-    if code != 404 {
-        t.Errorf("want %d; got %d", http.StatusOK, code)
-    }
+	if code != 404 {
+		t.Errorf("want %d; got %d", http.StatusOK, code)
+	}
 }
 
 func TestEmpty(t *testing.T) {
-    app := newTestApplication(t)
-    ts := newTestServer(t, app.routes())
-    defer ts.Close()
+	app := newTestApplication(t)
+	ts := newTestServer(t, app.Routes())
+	defer ts.Close()
 
-    code, _, body := ts.post(t, "/", "")
+	code, _, body := ts.post(t, "/", "")
 
-    if code != 200 {
-        t.Errorf("want %d; got %d", http.StatusOK, code)
-    }
+	if code != 200 {
+		t.Errorf("want %d; got %d", http.StatusOK, code)
+	}
 
-    desiredBodyText := "Empty body"
-    if string(body) != desiredBodyText {
-        t.Errorf("want body to equal '%s'; got '%s'", desiredBodyText, body)
-    }
+	desiredBodyText := "Empty body"
+	if string(body) != desiredBodyText {
+		t.Errorf("want body to equal '%s'; got '%s'", desiredBodyText, body)
+	}
 }
